@@ -1,0 +1,135 @@
+SystemName  Au with water layer
+SystemLabel ts_au_layer
+
+==================================================
+==================================================
+# SPECIES AND BASIS
+
+
+NumberOfAtoms         282
+NumberOfSpecies       3
+
+%block ChemicalSpeciesLabel
+  1   79  Au
+  2    8   O
+  3    1   H
+%endblock ChemicalSpeciesLabel
+
+LatticeConstant    1.0 Ang
+%block LatticeVectors
+0.000000 8.88 0.000000 
+7.690305552 4.44 0.000000
+0.00000 0.000000 81.0909600003
+%endblock LatticeVectors
+
+%include device_coords.fdf
+User.Basis T
+PAO.BasisType split
+%Block PAO.Basis
+Au          2                    # Species label, number of l-shells
+ n=6   0   2 P   1                   # n, l, Nzeta, Polarization, NzetaPol
+   7.247      5.715
+   1.000      1.000
+ n=5   2   2                         # n, l, Nzeta
+   5.107      2.838
+   1.000      1.000
+O    3     -0.18361
+ n=2   0   3   E    50.06241     5.0
+    7.0   4.0  2.4
+    1.00000     1.00000   1.0
+ n=2   1   3   E  10.0   6.0
+    7.0   4.0   2.2
+    1.00000     1.00000 1.0
+ n=3   2   1  E   50.0  0.0
+    6.0
+    1.00000
+H    2      0.94703
+ n=1   0   3   E   50.0   6.0
+    7.0   4.0 2.0
+    1.00000     1.00000  1.0
+ n=2   1   1   E   1000.0     0.0
+    6.0
+    1.00000
+%EndBlock PAO.Basis
+
+==================================================
+==================================================
+# K-points and functional
+
+XC.functional   GGA
+XC.authors      PBE
+
+%block kgrid_Monkhorst_Pack
+  1  0  0  0.0
+  0  1  0  0.0
+  0  0  1  0.0
+%endblock kgrid_Monkhorst_Pack
+
+
+==================================================
+==================================================
+# SCF variables
+
+MeshCutoff         500.0 Ry
+DM.MixSCF1   T
+MaxSCFIterations      1500           
+DM.MixingWeight       0.005          
+DM.Tolerance          1.d-4         
+DM.UseSaveDM          true          
+DM.NumberPulay        6
+TS.MixH               yes
+SCF.H.Tolerance       1.d-4 eV
+ElectronicTemperature   25 meV 
+==================================================
+==================================================
+# MD variables
+
+MD.FinalTimeStep 1
+MD.UseSaveXV      .true.
+#SlabDipoleCorrection .true.
+MD.NumCGsteps     0
+#MD.MaxForceTol    0.005 eV/Ang
+#MD.MaxDispl       0.01 Ang
+
+#%block GeometryConstraints
+# position from 1 to 72
+# position from 109 to 180
+#%endblock GeometryConstraints
+
+###Wannier
+==================================================
+==================================================
+Siesta2Wannier90.WriteMmn       true
+Siesta2Wannier90.WriteAmn       true
+Siesta2Wannier90.WriteEig       true
+Siesta2Wannier90.WriteUnk       true
+
+#Siesta2Wannier90.NumberOfBands 
+
+Siesta2Wannier90.UnkGrid1       20
+Siesta2Wannier90.UnkGrid2       20
+Siesta2Wannier90.UnkGrid3       20
+
+==================================================
+==================================================
+# Output variables
+WriteEigenvalues True
+WriteMullikenPop                1
+WriteBands                      .false.
+SaveRho                         .true.
+SaveDeltaRho                    .true.
+SaveHS                          .false.
+SaveElectrostaticPotential      True 
+SaveTotalPotential              no
+WriteCoorXmol                   .true.
+WriteMDXmol                     .true.
+WriteMDhistory                  .false.
+WriteEigenvalues                yes
+#WriteDenchar			.true.
+COOP.Write			T
+Write.HirshfeldPop		T
+==================================================
+==================================================
+# Include file containing TS options: electrodes, contours, etc...
+
+%include TS.fdf
