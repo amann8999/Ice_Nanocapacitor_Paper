@@ -18,3 +18,6 @@ Figures are generated in **`Figures.ipynb`**.
 - `./Half-Full/Ih/` — Half-Full Ice Ih Slab  
 - `./Half-Full/IhAu/ts_-0.5/`, `./Half-Full/IhAu/ts_0/`, `./Half-Full/IhAu/ts_0.5/` — Half-Full Ice Ih Capacitor  
 - `./Half-Full/XIAu/` — Half-Full Ice XI Capacitor  
+
+### **Pseudopotentials**
+- `./Pseudos` 
