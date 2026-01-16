@@ -1,6 +1,9 @@
 # Ice Nanocapacitor Paper
 
-Input files, data files, and figures for **[First-Principles Nanocapacitor Simulations of the Optical Dielectric Constant in Water Ice](https://arxiv.org/abs/2506.23003)** by *Mannino et al.*
+Input files, data files, and figures for  
+**First-Principles Nanocapacitor Simulations of the Optical Dielectric Constant in Water Ice** by *Mannino et al.*
+
+DOI: [10.1103/8sjg-ybfw](https://doi.org/10.1103/8sjg-ybfw)
 
 ## 📊 Figures
 Figures are generated in **`Figures.ipynb`**.
